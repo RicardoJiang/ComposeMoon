@@ -1,8 +1,11 @@
 ## 效果图
 ![](https://raw.githubusercontents.com/shenzhen2017/resource/main/2021/september/p4.gif)
 > 人有悲欢离合，月有阴晴圆缺，此事古难全，
+
 > 但愿人长久，千里共婵娟。
+
 > 恰逢中秋佳节，我们今天就使用`Compose`来实现一下月相变化动画吧~
+
 > 感兴趣的同学可以点个`Star` : [Compose 实现月亮阴晴圆缺动画](https://github.com/shenzhen2017/ComposeMoon)
 
 ## 主要思路
@@ -54,18 +57,24 @@ fun Star(star: Star) {
 ### 月相变化
 月相，天文学术语。（`phase of the moon`）是天文学中对于地球上看到的月球被太阳照明部分的称呼。随着月亮每天在星空中自东向西移动一大段距离，它的形状也在不断地变化着，这就是月亮位相变化，叫做月相。
 它的变化过程如下图所示
+
 ![](https://raw.githubusercontents.com/shenzhen2017/resource/main/2021/september/p5.jpeg)
+
 每个阶段都有各自的名字，如下图所示：
+
 ![](https://raw.githubusercontents.com/shenzhen2017/resource/main/2021/september/p6.jpeg)
 
 可以看出，月相变化过程还是有些复杂的，那我们怎么实现这个效果呢？
 
 #### 思路分析
 为了实现月相变化,首先我们需要画一个圆，代表月亮，最终的满月其实就是这样，比较简单
+
 有了满月，如何在它的基础上，画出其它的月相呢？我们可以通过图像混合模式来实现
 
 图像混合模式定义的是，当两个图像合成时，图像最终的展示方式。在`Androd`中，有相应的`API`接口来支持图像混合模式，即`Xfermode`.
+
 图像混合模式主要有以下16种,以下这张图片从一定程度上形象地说明了图像混合的作用，两个图形一圆一方通过一定的计算产生不同的组合效果，具体如下
+
 ![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2ccb418c0dc8431fb449cb5ddd117bd5~tplv-k3u1fbpfcp-watermark.awebp)
 
 我们为了实现月相动画，主要需要使用以下两种混合模式
@@ -195,6 +204,7 @@ fun PoetryColumn(
 开源不易，如果项目对你有所帮助，欢迎点赞,`Star`,收藏~
 ### 参考资料
 [蹭中秋热度来了~Android 自定义View——月有阴晴圆缺](https://juejin.cn/post/7006142194230755341)
+
 [「寒草的中秋献礼🥮，实现30s前端创意动画」陪你看日落和月升｜与你赏星空和诗歌](https://juejin.cn/post/7005355142413287438)
 
 ### 项目地址
