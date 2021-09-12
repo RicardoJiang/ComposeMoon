@@ -34,11 +34,14 @@ fun Moon(modifier: Modifier) {
         animationSpec = infiniteRepeatable(
             keyframes {
                 durationMillis = duration
-                delayMillis = 2000
+                delayMillis = 500
                 0.5f.at((duration * 0.25).toInt())
+                0.5f.at((duration * 0.3).toInt())
                 1f.at((duration * 0.4).toInt())
                 1f.at((duration * 0.6).toInt())
                 1.5f.at((duration * 0.75).toInt())
+                1.5f.at((duration * 0.8).toInt())
+                2.0f.at(duration)
             },
             repeatMode = RepeatMode.Restart
         ),
@@ -76,8 +79,8 @@ private fun getPhaseText(progress: Float): String {
         progress == 0.5f -> "上弦月"
         progress < 1.0f -> "渐盈凸月"
         progress == 1.0f -> "满月"
-        progress < 1.5f -> "渐亏凸月"
-        progress == 1.5f -> "下弦月"
+        progress < 1.45f -> "渐亏凸月"
+        progress in 1.45f..1.55f -> "下弦月"
         progress < 2.0f -> "下蛾眉月"
         else -> "晦"
     }
