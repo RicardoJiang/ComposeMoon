@@ -4,8 +4,11 @@ import android.graphics.BlurMaskFilter
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -13,6 +16,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun Moon(modifier: Modifier) {
@@ -40,7 +44,12 @@ fun Moon(modifier: Modifier) {
         ),
     ).value
     BoxWithConstraints(modifier = modifier) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
+        val canvasSize = minOf(maxWidth, maxHeight) - 40.dp
+        Canvas(
+            modifier = Modifier
+                .size(canvasSize)
+                .align(Alignment.TopCenter)
+        ) {
             drawMoonCircle(this, progress)
             drawIntoCanvas {
                 it.withSaveLayer(Rect(0f, 0f, size.width, size.height), paint = Paint()) {
@@ -51,6 +60,26 @@ fun Moon(modifier: Modifier) {
                 }
             }
         }
+        Text(
+            text = getPhaseText(progress),
+            color = Color(0xfff9dc60),
+            modifier = Modifier.align(Alignment.BottomCenter),
+            style = MaterialTheme.typography.h5
+        )
+    }
+}
+
+private fun getPhaseText(progress: Float): String {
+    return when {
+        progress <= 0f -> "新月"
+        progress < 0.5f -> "上蛾眉月"
+        progress == 0.5f -> "上弦月"
+        progress < 1.0f -> "渐盈凸月"
+        progress == 1.0f -> "满月"
+        progress < 1.5f -> "渐亏凸月"
+        progress == 1.5f -> "下弦月"
+        progress < 2.0f -> "下蛾眉月"
+        else -> "晦"
     }
 }
 
@@ -100,13 +129,7 @@ private fun drawMoonArc(scope: DrawScope, canvas: Canvas, paint: Paint, progress
         progress <= 1.5f -> -180f
         else -> -180f
     }
-    val blendMode = when {
-        progress <= 0.5f -> BlendMode.DstOver
-        progress <= 1f -> BlendMode.DstOver
-        progress <= 1.5f -> BlendMode.DstOver
-        else -> BlendMode.DstOver
-    }
-    paint.blendMode = blendMode
+    paint.blendMode = BlendMode.DstOver
     scope.run {
         canvas.drawArc(Rect(0f, 0f, size.width, size.height), 90f, sweepAngle, false, paint)
     }
