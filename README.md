@@ -1,11 +1,8 @@
 ## 效果图
 ![](https://raw.githubusercontents.com/shenzhen2017/resource/main/2021/september/p4.gif)
-> 人有悲欢离合，月有阴晴圆缺，此事古难全，
-
+> 人有悲欢离合，月有阴晴圆缺，此事古难全。
 > 但愿人长久，千里共婵娟。
-
 > 恰逢中秋佳节，我们今天就使用`Compose`来实现一下月相变化动画吧~
-
 > 感兴趣的同学可以点个`Star` : [Compose 实现月亮阴晴圆缺动画](https://github.com/shenzhen2017/ComposeMoon)
 
 ## 主要思路
