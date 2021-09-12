@@ -17,6 +17,7 @@ import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.zj.composemoon.ui.theme.ComposeMoonTheme
 import com.zj.composemoon.widget.Moon
+import com.zj.composemoon.widget.Poetry
 import com.zj.composemoon.widget.StarrySky
 
 class MainActivity : ComponentActivity() {
@@ -43,6 +44,12 @@ fun Greeting(name: String) {
                 .size(250.dp)
                 .align(Alignment.Center)
                 .offset(x = -(200.dp))
+        )
+        Poetry(
+            modifier = Modifier
+                .padding(0.dp, 100.dp, 80.dp, 0.dp)
+                .wrapContentSize()
+                .align(Alignment.TopEnd)
         )
     }
 }
